@@ -45,6 +45,11 @@ class PomodoroTimer {
         this.volumeSlider.addEventListener('input', (e) => this.updateVolume(e.target.value));
         this.darkModeToggle.addEventListener('click', () => this.toggleDarkMode());
         
+        // 入力フィールドの変更で即座に設定を適用
+        this.workTimeInput.addEventListener('input', () => this.handleTimeInputChange());
+        this.breakTimeInput.addEventListener('input', () => this.handleTimeInputChange());
+        this.longBreakTimeInput.addEventListener('input', () => this.handleTimeInputChange());
+        
         document.addEventListener('keydown', (e) => this.handleKeyPress(e));
     }
     
@@ -131,6 +136,34 @@ class PomodoroTimer {
         this.progressFill.style.width = `${progressPercentage}%`;
     }
     
+    handleTimeInputChange() {
+        if (this.isRunning) {
+            return;
+        }
+        
+        const workMinutes = parseInt(this.workTimeInput.value);
+        const breakMinutes = parseInt(this.breakTimeInput.value);
+        const longBreakMinutes = parseInt(this.longBreakTimeInput.value);
+        
+        if (isNaN(workMinutes) || workMinutes < 1 || workMinutes > 60) {
+            return;
+        }
+        
+        if (isNaN(breakMinutes) || breakMinutes < 1 || breakMinutes > 30) {
+            return;
+        }
+        
+        if (isNaN(longBreakMinutes) || longBreakMinutes < 1 || longBreakMinutes > 60) {
+            return;
+        }
+        
+        this.workTime = workMinutes * 60;
+        this.breakTime = breakMinutes * 60;
+        this.longBreakTime = longBreakMinutes * 60;
+        
+        this.reset();
+    }
+
     applySettings() {
         if (this.isRunning) {
             alert('Please stop the timer before changing settings.');
@@ -226,10 +259,6 @@ class PomodoroTimer {
             case 'r':
                 event.preventDefault();
                 this.reset();
-                break;
-            case 'enter':
-                event.preventDefault();
-                this.applySettings();
                 break;
         }
     }
