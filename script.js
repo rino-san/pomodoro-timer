@@ -17,6 +17,7 @@ class PomodoroTimer {
         this.updateDisplay();
         this.updateStatsDisplay();
         this.applyDarkMode();
+        this.initializeCollapsibleSections();
     }
     
     initializeElements() {
@@ -35,6 +36,14 @@ class PomodoroTimer {
         this.todaySessionsDisplay = document.getElementById('today-sessions');
         this.totalTimeDisplay = document.getElementById('total-time');
         this.darkModeToggle = document.getElementById('dark-mode-toggle');
+        
+        // 折りたたみ関連の要素
+        this.settingsToggle = document.getElementById('settings-toggle');
+        this.settingsContent = document.getElementById('settings-content');
+        this.shortcutsToggle = document.getElementById('shortcuts-toggle');
+        this.shortcutsContent = document.getElementById('shortcuts-content');
+        this.settingsHeader = document.getElementById('settings-header');
+        this.shortcutsHeader = document.getElementById('shortcuts-header');
     }
     
     bindEvents() {
@@ -49,6 +58,10 @@ class PomodoroTimer {
         this.workTimeInput.addEventListener('input', () => this.handleTimeInputChange());
         this.breakTimeInput.addEventListener('input', () => this.handleTimeInputChange());
         this.longBreakTimeInput.addEventListener('input', () => this.handleTimeInputChange());
+        
+        // 折りたたみ機能
+        this.settingsHeader.addEventListener('click', () => this.toggleCollapse('settings'));
+        this.shortcutsHeader.addEventListener('click', () => this.toggleCollapse('shortcuts'));
         
         document.addEventListener('keydown', (e) => this.handleKeyPress(e));
     }
@@ -315,6 +328,38 @@ class PomodoroTimer {
             document.body.classList.remove('dark-mode');
             this.darkModeToggle.textContent = '🌙 Dark Mode';
         }
+    }
+    
+    toggleCollapse(section) {
+        if (section === 'settings') {
+            const isCollapsed = this.settingsContent.classList.contains('collapsed');
+            if (isCollapsed) {
+                this.settingsContent.classList.remove('collapsed');
+                this.settingsContent.style.maxHeight = this.settingsContent.scrollHeight + 'px';
+                this.settingsToggle.textContent = '−';
+            } else {
+                this.settingsContent.classList.add('collapsed');
+                this.settingsContent.style.maxHeight = '0px';
+                this.settingsToggle.textContent = '+';
+            }
+        } else if (section === 'shortcuts') {
+            const isCollapsed = this.shortcutsContent.classList.contains('collapsed');
+            if (isCollapsed) {
+                this.shortcutsContent.classList.remove('collapsed');
+                this.shortcutsContent.style.maxHeight = this.shortcutsContent.scrollHeight + 'px';
+                this.shortcutsToggle.textContent = '−';
+            } else {
+                this.shortcutsContent.classList.add('collapsed');
+                this.shortcutsContent.style.maxHeight = '0px';
+                this.shortcutsToggle.textContent = '+';
+            }
+        }
+    }
+    
+    initializeCollapsibleSections() {
+        // 初期状態でコンテンツの高さを設定
+        this.settingsContent.style.maxHeight = this.settingsContent.scrollHeight + 'px';
+        this.shortcutsContent.style.maxHeight = this.shortcutsContent.scrollHeight + 'px';
     }
 }
 

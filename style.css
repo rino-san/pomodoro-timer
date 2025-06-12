@@ -52,22 +52,60 @@ h3 {
     font-size: 1rem;
     font-weight: 500;
     color: #374151;
-    margin-bottom: 16px;
+    margin: 0;
 }
 
 h4 {
     font-size: 0.875rem;
     font-weight: 500;
     color: #374151;
-    margin-bottom: 12px;
+    margin: 0;
 }
 
 .settings-panel {
     background: #f8fafc;
     border-radius: 12px;
-    padding: 20px;
+    padding: 16px;
     margin-bottom: 24px;
     border: 1px solid #e2e8f0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.section-header:hover {
+    opacity: 0.8;
+}
+
+.collapse-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    color: #6b7280;
+}
+
+.collapse-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.collapsible-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.collapsible-content.collapsed {
+    max-height: 0;
+    opacity: 0;
 }
 
 .settings-grid {
@@ -266,7 +304,7 @@ h4 {
 .keyboard-shortcuts {
     background: #f8fafc;
     border-radius: 12px;
-    padding: 20px;
+    padding: 16px;
     margin-top: 16px;
     border: 1px solid #e2e8f0;
 }
@@ -381,6 +419,14 @@ body.dark-mode .shortcut span {
 
 body.dark-mode .progress-bar {
     background: #374151;
+}
+
+body.dark-mode .collapse-btn {
+    color: #9ca3af;
+}
+
+body.dark-mode .collapse-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 640px) {
