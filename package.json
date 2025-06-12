@@ -2,24 +2,9 @@
   "name": "pomodoro-timer",
   "version": "1.0.0",
   "description": "A beautiful and functional Pomodoro Timer built with vanilla HTML, CSS, and JavaScript",
-  "main": "index.html",
   "scripts": {
-    "start": "python3 -m http.server 8000",
-    "build": "echo 'No build step required for static site'",
-    "dev": "python3 -m http.server 8000"
+    "build": "echo 'Static site ready'"
   },
-  "keywords": [
-    "pomodoro",
-    "timer",
-    "productivity",
-    "vanilla-js",
-    "static-site"
-  ],
   "author": "rino-san",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rino-san/pomodoro-timer.git"
-  },
-  "homepage": "https://rino-san.github.io/pomodoro-timer/"
+  "license": "MIT"
 }
