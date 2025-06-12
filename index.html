@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Pomodoro Timer</h1>
+            <button id="dark-mode-toggle" class="btn secondary dark-mode-btn">🌙 Dark Mode</button>
+        </div>
+        
+        <div class="settings-panel">
+            <h3>Settings</h3>
+            <div class="settings-grid">
+                <div class="setting-item">
+                    <label for="work-time">Work (minutes)</label>
+                    <input type="number" id="work-time" min="1" max="60" value="25">
+                </div>
+                <div class="setting-item">
+                    <label for="break-time">Short Break (minutes)</label>
+                    <input type="number" id="break-time" min="1" max="30" value="5">
+                </div>
+                <div class="setting-item">
+                    <label for="long-break-time">Long Break (minutes)</label>
+                    <input type="number" id="long-break-time" min="1" max="60" value="15">
+                </div>
+                <div class="setting-item">
+                    <label for="volume-slider">Sound Volume</label>
+                    <input type="range" id="volume-slider" min="0" max="100" value="50" class="volume-slider">
+                </div>
+                <button id="apply-settings" class="btn secondary">Apply</button>
+            </div>
+        </div>
+
+        <div class="timer-container">
+            <div class="timer-display">
+                <span id="time">25:00</span>
+            </div>
+            
+            <div class="session-info">
+                <span id="session-type">Work Session</span>
+            </div>
+            
+            <div class="controls">
+                <button id="start-btn" class="btn primary">Start</button>
+                <button id="pause-btn" class="btn secondary">Pause</button>
+                <button id="reset-btn" class="btn secondary">Reset</button>
+            </div>
+            
+            <div class="progress-section">
+                <h4>Progress</h4>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <div class="session-stats">
+                    <span id="session-count">Completed Sessions: 0</span>
+                    <span id="today-sessions">Today's Sessions: 0</span>
+                    <span id="total-time">Total Focus Time: 0h 0m</span>
+                </div>
+            </div>
+            
+            <div class="keyboard-shortcuts">
+                <h4>Keyboard Shortcuts</h4>
+                <div class="shortcuts-list">
+                    <div class="shortcut">
+                        <kbd>Space</kbd>
+                        <span>Start/Pause Timer</span>
+                    </div>
+                    <div class="shortcut">
+                        <kbd>R</kbd>
+                        <span>Reset Timer</span>
+                    </div>
+                    <div class="shortcut">
+                        <kbd>Enter</kbd>
+                        <span>Apply Settings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
